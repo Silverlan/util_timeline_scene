@@ -8,9 +8,6 @@
 #include "util_timeline_channel.hpp"
 #include "util_timeline_event.hpp"
 
-#pragma comment(lib,"util.lib")
-#pragma comment(lib,"mathutil.lib")
-
 int main(int argc,char *argv[])
 {
 	auto scene = uts::TimelineScene::Create<uts::TimelineScene>();
