@@ -7,6 +7,7 @@
 
 #include "util_timeline_scene.hpp"
 #include "util_timeline_channel.hpp"
+#include "util_timeline_event.hpp"
 
 template<class TTimelineScene,typename... TARGS>
 	std::shared_ptr<uts::TimelineScene> uts::TimelineScene::Create(TARGS ...args) {return std::shared_ptr<TimelineScene>(new TTimelineScene(std::forward<TARGS>(args)...));}
