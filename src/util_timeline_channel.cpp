@@ -12,7 +12,6 @@ uts::Channel::Channel(TimelineScene &scene,const std::string &name)
 void uts::Channel::Initialize() {}
 const std::vector<std::shared_ptr<uts::Event>> &uts::Channel::GetEvents() const {return const_cast<Channel*>(this)->GetEvents();}
 std::vector<std::shared_ptr<uts::Event>> &uts::Channel::GetEvents() {return m_events;}
-
 uts::TimelineScene *uts::Channel::GetScene() const {return m_scene.lock().get();}
 
 void uts::Channel::Tick(double t,double dt) {HandleTick(t,dt);}
