@@ -9,17 +9,14 @@
 #include <string>
 #include <memory>
 
-namespace uts
-{
+namespace uts {
 	class Event;
 	class TimelineScene;
-	class Channel
-		: public std::enable_shared_from_this<Channel>
-	{
-	public:
-		template<class TChannel,typename... TARGS>
-			static std::shared_ptr<Channel> Create(TimelineScene &scene,const std::string &name,TARGS ...args);
-		virtual ~Channel()=default;
+	class Channel : public std::enable_shared_from_this<Channel> {
+	  public:
+		template<class TChannel, typename... TARGS>
+		static std::shared_ptr<Channel> Create(TimelineScene &scene, const std::string &name, TARGS... args);
+		virtual ~Channel() = default;
 		virtual void Initialize();
 
 		const std::vector<std::shared_ptr<Event>> &GetEvents() const;
@@ -29,14 +26,14 @@ namespace uts
 		void SetName(const std::string &name);
 
 		TimelineScene *GetScene() const;
-		void Tick(double t,double dt);
+		void Tick(double t, double dt);
 		void Reset();
 
-		template<class TEvent,typename... TARGS>
-			std::shared_ptr<Event> AddEvent(TARGS ...args);
-	protected:
-		Channel(TimelineScene &scene,const std::string &name);
-		virtual void HandleTick(double t,double dt);
+		template<class TEvent, typename... TARGS>
+		std::shared_ptr<Event> AddEvent(TARGS... args);
+	  protected:
+		Channel(TimelineScene &scene, const std::string &name);
+		virtual void HandleTick(double t, double dt);
 
 		std::vector<std::shared_ptr<Event>> m_events = {};
 		std::string m_name = {};

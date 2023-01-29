@@ -7,38 +7,34 @@
 #include <sharedutils/util_string.h>
 #include <algorithm>
 
-const std::vector<std::shared_ptr<uts::Channel>> &uts::TimelineScene::GetChannels() const {return const_cast<TimelineScene*>(this)->GetChannels();}
-std::vector<std::shared_ptr<uts::Channel>> &uts::TimelineScene::GetChannels() {return m_channels;}
+const std::vector<std::shared_ptr<uts::Channel>> &uts::TimelineScene::GetChannels() const { return const_cast<TimelineScene *>(this)->GetChannels(); }
+std::vector<std::shared_ptr<uts::Channel>> &uts::TimelineScene::GetChannels() { return m_channels; }
 
 std::vector<std::shared_ptr<uts::Channel>>::iterator uts::TimelineScene::FindChannel(const std::string &name)
 {
-	return std::find_if(m_channels.begin(),m_channels.end(),[&name](const std::shared_ptr<Channel> &channel) {
-		return ustring::compare(channel->GetName(),name,false);
-	});
+	return std::find_if(m_channels.begin(), m_channels.end(), [&name](const std::shared_ptr<Channel> &channel) { return ustring::compare(channel->GetName(), name, false); });
 }
 std::shared_ptr<uts::Channel> uts::TimelineScene::GetChannel(const std::string &name)
 {
 	auto it = FindChannel(name);
 	return (it != m_channels.end()) ? *it : nullptr;
 }
-bool uts::TimelineScene::HasChannel(const std::string &name) {return (GetChannel(name) != nullptr) ? true : false;}
+bool uts::TimelineScene::HasChannel(const std::string &name) { return (GetChannel(name) != nullptr) ? true : false; }
 void uts::TimelineScene::RemoveChannel(const Channel &channel)
 {
-	auto it = std::find_if(m_channels.begin(),m_channels.end(),[&channel](const std::shared_ptr<Channel> &channelOther) {
-		return channelOther.get() == &channel;
-	});
+	auto it = std::find_if(m_channels.begin(), m_channels.end(), [&channel](const std::shared_ptr<Channel> &channelOther) { return channelOther.get() == &channel; });
 	if(it == m_channels.end())
 		return;
 	m_channels.erase(it);
 }
-void uts::TimelineScene::OnStateChanged(State oldState,State newState) {}
+void uts::TimelineScene::OnStateChanged(State oldState, State newState) {}
 void uts::TimelineScene::Play()
 {
 	if(IsPlaying())
 		return;
 	auto old = m_state;
 	m_state = State::Playing;
-	OnStateChanged(old,m_state);
+	OnStateChanged(old, m_state);
 }
 void uts::TimelineScene::Pause()
 {
@@ -46,7 +42,7 @@ void uts::TimelineScene::Pause()
 		return;
 	auto old = m_state;
 	m_state = State::Paused;
-	OnStateChanged(old,m_state);
+	OnStateChanged(old, m_state);
 }
 void uts::TimelineScene::Stop()
 {
@@ -55,7 +51,7 @@ void uts::TimelineScene::Stop()
 	auto old = m_state;
 	m_state = State::Stopped;
 	Rewind();
-	OnStateChanged(old,m_state);
+	OnStateChanged(old, m_state);
 }
 void uts::TimelineScene::Rewind()
 {
@@ -73,9 +69,9 @@ void uts::TimelineScene::HandleTick(double dt)
 {
 	m_time += dt;
 	for(auto &channel : m_channels)
-		channel->Tick(m_time,dt);
+		channel->Tick(m_time, dt);
 }
-uts::TimelineScene::State uts::TimelineScene::GetState() const {return m_state;}
-bool uts::TimelineScene::IsPlaying() const {return m_state == State::Playing;}
-bool uts::TimelineScene::IsPaused() const {return m_state == State::Paused;}
-bool uts::TimelineScene::IsStopped() const {return m_state == State::Stopped;}
+uts::TimelineScene::State uts::TimelineScene::GetState() const { return m_state; }
+bool uts::TimelineScene::IsPlaying() const { return m_state == State::Playing; }
+bool uts::TimelineScene::IsPaused() const { return m_state == State::Paused; }
+bool uts::TimelineScene::IsStopped() const { return m_state == State::Stopped; }

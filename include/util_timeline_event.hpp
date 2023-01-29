@@ -7,26 +7,18 @@
 
 #include <memory>
 
-namespace uts
-{
+namespace uts {
 	class Channel;
-	class Event
-		: public std::enable_shared_from_this<Event>
-	{
-	public:
-		enum class State : uint32_t
-		{
-			Initial = 0u,
-			Pending,
-			Complete
-		};
-		template<class TEvent,typename... TARGS>
-			static std::shared_ptr<Event> Create(Channel &channel,TARGS ...args);
-		virtual ~Event()=default;
-		virtual void Initialize()=0;
+	class Event : public std::enable_shared_from_this<Event> {
+	  public:
+		enum class State : uint32_t { Initial = 0u, Pending, Complete };
+		template<class TEvent, typename... TARGS>
+		static std::shared_ptr<Event> Create(Channel &channel, TARGS... args);
+		virtual ~Event() = default;
+		virtual void Initialize() = 0;
 
-		void SetTimeRange(float tStart,float tEnd);
-		std::pair<float,float> GetTimeRange() const;
+		void SetTimeRange(float tStart, float tEnd);
+		std::pair<float, float> GetTimeRange() const;
 		float GetStartTime() const;
 		float GetEndTime() const;
 
@@ -36,10 +28,10 @@ namespace uts
 		State GetState() const;
 
 		Channel *GetChannel() const;
-		State Tick(double t,double dt);
-	protected:
+		State Tick(double t, double dt);
+	  protected:
 		Event(Channel &channel);
-		virtual State HandleTick(double t,double dt);
+		virtual State HandleTick(double t, double dt);
 
 		State m_state = State::Initial;
 		float m_startTime = 0.f;
@@ -48,7 +40,10 @@ namespace uts
 	};
 };
 
-template<class TEvent,typename... TARGS>
-	std::shared_ptr<uts::Event> uts::Event::Create(Channel &channel,TARGS ...args) {return std::shared_ptr<Event>(new TEvent(channel,std::forward<TARGS>(args)...));}
+template<class TEvent, typename... TARGS>
+std::shared_ptr<uts::Event> uts::Event::Create(Channel &channel, TARGS... args)
+{
+	return std::shared_ptr<Event>(new TEvent(channel, std::forward<TARGS>(args)...));
+}
 
 #endif

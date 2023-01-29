@@ -9,25 +9,31 @@
 #include "util_timeline_channel.hpp"
 #include "util_timeline_event.hpp"
 
-template<class TTimelineScene,typename... TARGS>
-	std::shared_ptr<uts::TimelineScene> uts::TimelineScene::Create(TARGS ...args) {return std::shared_ptr<TimelineScene>(new TTimelineScene(std::forward<TARGS>(args)...));}
-
-template<class TChannel,typename... TARGS>
-	std::shared_ptr<uts::Channel> uts::TimelineScene::AddChannel(const std::string &name,TARGS ...args)
+template<class TTimelineScene, typename... TARGS>
+std::shared_ptr<uts::TimelineScene> uts::TimelineScene::Create(TARGS... args)
 {
-	auto r = Channel::Create<TChannel,TARGS...>(*this,name,std::forward<TARGS>(args)...);
+	return std::shared_ptr<TimelineScene>(new TTimelineScene(std::forward<TARGS>(args)...));
+}
+
+template<class TChannel, typename... TARGS>
+std::shared_ptr<uts::Channel> uts::TimelineScene::AddChannel(const std::string &name, TARGS... args)
+{
+	auto r = Channel::Create<TChannel, TARGS...>(*this, name, std::forward<TARGS>(args)...);
 	m_channels.push_back(r);
 	r->Initialize();
 	return r;
 }
 
-template<class TChannel,typename... TARGS>
-	std::shared_ptr<uts::Channel> uts::Channel::Create(TimelineScene &scene,const std::string &name,TARGS ...args) {return std::shared_ptr<Channel>(new TChannel(scene,name,std::forward<TARGS>(args)...));}
-
-template<class TEvent,typename... TARGS>
-	std::shared_ptr<uts::Event> uts::Channel::AddEvent(TARGS ...args)
+template<class TChannel, typename... TARGS>
+std::shared_ptr<uts::Channel> uts::Channel::Create(TimelineScene &scene, const std::string &name, TARGS... args)
 {
-	auto r = Event::Create<TEvent,TARGS...>(*this,std::forward<TARGS>(args)...);
+	return std::shared_ptr<Channel>(new TChannel(scene, name, std::forward<TARGS>(args)...));
+}
+
+template<class TEvent, typename... TARGS>
+std::shared_ptr<uts::Event> uts::Channel::AddEvent(TARGS... args)
+{
+	auto r = Event::Create<TEvent, TARGS...>(*this, std::forward<TARGS>(args)...);
 	m_events.push_back(r);
 	r->Initialize();
 	return r;
