@@ -2,8 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "util_timeline_event.hpp"
-#include "util_timeline_channel.hpp"
+module;
+
+module timeline_scene.event;
+
+import timeline_scene.channel;
 
 uts::Event::Event(Channel &channel) : m_channel(channel.shared_from_this()) {}
 void uts::Event::SetTimeRange(float tStart, float tEnd)

@@ -2,14 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef __UTIL_TIMELINE_CHANNEL_HPP__
-#define __UTIL_TIMELINE_CHANNEL_HPP__
+module;
 
 #include <vector>
 #include <string>
 #include <memory>
 
-namespace uts {
+export module timeline_scene.channel;
+
+export namespace uts {
 	class Event;
 	class TimelineScene;
 	class Channel : public std::enable_shared_from_this<Channel> {
@@ -40,5 +41,3 @@ namespace uts {
 		mutable std::weak_ptr<TimelineScene> m_scene = {};
 	};
 };
-
-#endif

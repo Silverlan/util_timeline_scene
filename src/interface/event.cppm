@@ -2,12 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#ifndef __UTIL_TIMELINE_EVENT_HPP__
-#define __UTIL_TIMELINE_EVENT_HPP__
+module;
 
 #include <memory>
 
-namespace uts {
+export module timeline_scene.event;
+
+export namespace uts {
 	class Channel;
 	class Event : public std::enable_shared_from_this<Event> {
 	  public:
@@ -45,5 +46,3 @@ std::shared_ptr<uts::Event> uts::Event::Create(Channel &channel, TARGS... args)
 {
 	return std::shared_ptr<Event>(new TEvent(channel, std::forward<TARGS>(args)...));
 }
-
-#endif

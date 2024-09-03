@@ -2,10 +2,30 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "util_timeline_scene.hpp"
-#include "util_timeline_channel.hpp"
+module;
+
 #include <sharedutils/util_string.h>
+#include <memory>
 #include <algorithm>
+
+module timeline_scene.scene;
+
+import timeline_scene.channel;
+
+template<class TTimelineScene, typename... TARGS>
+std::shared_ptr<uts::TimelineScene> uts::TimelineScene::Create(TARGS... args)
+{
+	return std::shared_ptr<TimelineScene>(new TTimelineScene(std::forward<TARGS>(args)...));
+}
+
+template<class TChannel, typename... TARGS>
+std::shared_ptr<uts::Channel> uts::TimelineScene::AddChannel(const std::string &name, TARGS... args)
+{
+	auto r = Channel::template Create<TChannel, TARGS...>(*this, name, std::forward<TARGS>(args)...);
+	m_channels.push_back(r);
+	r->Initialize();
+	return r;
+}
 
 const std::vector<std::shared_ptr<uts::Channel>> &uts::TimelineScene::GetChannels() const { return const_cast<TimelineScene *>(this)->GetChannels(); }
 std::vector<std::shared_ptr<uts::Channel>> &uts::TimelineScene::GetChannels() { return m_channels; }
