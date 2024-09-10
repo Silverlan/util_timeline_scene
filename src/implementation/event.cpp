@@ -4,6 +4,8 @@
 
 module;
 
+#include <utility>
+
 module timeline_scene.event;
 
 import timeline_scene.channel;
