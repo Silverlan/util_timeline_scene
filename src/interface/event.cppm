@@ -8,13 +8,12 @@ module;
 
 export module timeline_scene.event;
 
-namespace uts {
-	class Channel;
-	export class Event : public std::enable_shared_from_this<Event> {
+export namespace uts {
+	class Event : public std::enable_shared_from_this<Event> {
 	  public:
 		enum class State : uint32_t { Initial = 0u, Pending, Complete };
 		template<class TEvent, typename... TARGS>
-		static std::shared_ptr<Event> Create(Channel &channel, TARGS... args);
+		static std::shared_ptr<Event> Create(class Channel &channel, TARGS... args);
 		virtual ~Event() = default;
 		virtual void Initialize() = 0;
 
@@ -28,21 +27,21 @@ namespace uts {
 		virtual void Reset();
 		State GetState() const;
 
-		Channel *GetChannel() const;
+		class Channel *GetChannel() const;
 		State Tick(double t, double dt);
 	  protected:
-		Event(Channel &channel);
+		Event(class Channel &channel);
 		virtual State HandleTick(double t, double dt);
 
 		State m_state = State::Initial;
 		float m_startTime = 0.f;
 		float m_endTime = 0.f;
-		mutable std::weak_ptr<Channel> m_channel = {};
+		mutable std::weak_ptr<class Channel> m_channel = {};
 	};
 };
 
 template<class TEvent, typename... TARGS>
-std::shared_ptr<uts::Event> uts::Event::Create(Channel &channel, TARGS... args)
+std::shared_ptr<uts::Event> uts::Event::Create(class Channel &channel, TARGS... args)
 {
 	return std::shared_ptr<Event>(new TEvent(channel, std::forward<TARGS>(args)...));
 }
