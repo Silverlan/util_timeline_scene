@@ -5,6 +5,8 @@
 module;
 
 #include <string>
+#include <memory>
+#include <vector>
 
 module timeline_scene.channel;
 

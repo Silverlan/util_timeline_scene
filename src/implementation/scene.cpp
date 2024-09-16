@@ -4,9 +4,12 @@
 
 module;
 
-#include <sharedutils/util_string.h>
 #include <memory>
+#include <cctype>
 #include <algorithm>
+#include <string>
+#include <vector>
+#include <string_view>
 
 module timeline_scene.scene;
 
@@ -30,9 +33,10 @@ std::shared_ptr<uts::Channel> uts::TimelineScene::AddChannel(const std::string &
 const std::vector<std::shared_ptr<uts::Channel>> &uts::TimelineScene::GetChannels() const { return const_cast<TimelineScene *>(this)->GetChannels(); }
 std::vector<std::shared_ptr<uts::Channel>> &uts::TimelineScene::GetChannels() { return m_channels; }
 
+static bool ichar_equals(char a, char b) { return std::tolower(static_cast<unsigned char>(a)) == std::tolower(static_cast<unsigned char>(b)); }
 std::vector<std::shared_ptr<uts::Channel>>::iterator uts::TimelineScene::FindChannel(const std::string &name)
 {
-	return std::find_if(m_channels.begin(), m_channels.end(), [&name](const std::shared_ptr<Channel> &channel) { return ustring::compare(channel->GetName(), name, false); });
+	return std::find_if(m_channels.begin(), m_channels.end(), [&name](const std::shared_ptr<Channel> &channel) { return std::ranges::equal(channel->GetName(), name, ichar_equals); });
 }
 std::shared_ptr<uts::Channel> uts::TimelineScene::GetChannel(const std::string &name)
 {
