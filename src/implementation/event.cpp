@@ -6,7 +6,7 @@ module;
 
 #include <utility>
 
-module timeline_scene.event:impl;
+module timeline_scene;
 
 import timeline_scene.channel;
 import timeline_scene.event;

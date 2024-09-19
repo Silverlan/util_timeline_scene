@@ -8,7 +8,7 @@ module;
 #include <memory>
 #include <vector>
 
-module timeline_scene.channel:impl;
+module timeline_scene;
 
 import timeline_scene.scene;
 import timeline_scene.channel;

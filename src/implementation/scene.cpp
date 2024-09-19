@@ -11,7 +11,7 @@ module;
 #include <vector>
 #include <string_view>
 
-module timeline_scene.scene:impl;
+module timeline_scene;
 
 import timeline_scene.scene;
 import timeline_scene.channel;
