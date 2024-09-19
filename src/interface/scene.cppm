@@ -10,17 +10,8 @@ module;
 
 export module timeline_scene.scene;
 
-// This causes a compiler error with MSBuild
-#ifdef __linux__
-namespace uts {
-	class Channel;
-};
-#endif
-
 export namespace uts {
-#ifdef _WIN32
 	class Channel;
-#endif
 	class TimelineScene : public std::enable_shared_from_this<TimelineScene> {
 	  public:
 		enum class State : uint32_t { Initial = 0, Playing, Paused, Stopped };

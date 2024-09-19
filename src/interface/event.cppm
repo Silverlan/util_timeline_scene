@@ -8,17 +8,8 @@ module;
 
 export module timeline_scene.event;
 
-// This causes a compiler error with MSBuild
-#ifdef __linux__
-namespace uts {
-	class Channel;
-};
-#endif
-
 export namespace uts {
-#ifdef _WIN32
 	class Channel;
-#endif
 	class Event : public std::enable_shared_from_this<Event> {
 	  public:
 		enum class State : uint32_t { Initial = 0u, Pending, Complete };

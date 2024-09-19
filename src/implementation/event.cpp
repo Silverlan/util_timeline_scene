@@ -6,9 +6,10 @@ module;
 
 #include <utility>
 
-module timeline_scene.event;
+module timeline_scene.event:impl;
 
 import timeline_scene.channel;
+import timeline_scene.event;
 
 uts::Event::Event(Channel &channel) : m_channel(channel.shared_from_this()) {}
 void uts::Event::SetTimeRange(float tStart, float tEnd)

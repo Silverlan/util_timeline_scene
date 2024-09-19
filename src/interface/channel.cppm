@@ -10,19 +10,9 @@ module;
 
 export module timeline_scene.channel;
 
-// This causes a compiler error with MSBuild
-#ifdef __linux__
-namespace uts {
-	class TimelineScene;
-	class Event;
-};
-#endif
-
 export namespace uts {
-#ifdef _WIN32
 	class TimelineScene;
 	class Event;
-#endif
 	class Channel : public std::enable_shared_from_this<Channel> {
 	  public:
 		template<class TChannel, typename... TARGS>

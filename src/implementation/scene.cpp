@@ -11,8 +11,9 @@ module;
 #include <vector>
 #include <string_view>
 
-module timeline_scene.scene;
+module timeline_scene.scene:impl;
 
+import timeline_scene.scene;
 import timeline_scene.channel;
 
 template<class TTimelineScene, typename... TARGS>

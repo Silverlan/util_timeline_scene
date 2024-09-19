@@ -8,9 +8,10 @@ module;
 #include <memory>
 #include <vector>
 
-module timeline_scene.channel;
+module timeline_scene.channel:impl;
 
 import timeline_scene.scene;
+import timeline_scene.channel;
 import timeline_scene.event;
 
 template<class TChannel, typename... TARGS>
