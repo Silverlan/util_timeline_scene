@@ -8,8 +8,9 @@ module;
 
 export module timeline_scene.event;
 
+import timeline_scene.types;
+
 export namespace uts {
-	class Channel;
 	class Event : public std::enable_shared_from_this<Event> {
 	  public:
 		enum class State : uint32_t { Initial = 0u, Pending, Complete };

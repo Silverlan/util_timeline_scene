@@ -10,8 +10,9 @@ module;
 
 export module timeline_scene.scene;
 
+import timeline_scene.types;
+
 export namespace uts {
-	class Channel;
 	class TimelineScene : public std::enable_shared_from_this<TimelineScene> {
 	  public:
 		enum class State : uint32_t { Initial = 0, Playing, Paused, Stopped };
