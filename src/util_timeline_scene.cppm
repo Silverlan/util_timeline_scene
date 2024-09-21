@@ -3,6 +3,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 export module timeline_scene;
-export import timeline_scene.channel;
-export import timeline_scene.event;
-export import timeline_scene.scene;
+export import :channel;
+export import :event;
+export import :scene;

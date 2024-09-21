@@ -13,8 +13,8 @@ module;
 
 module timeline_scene;
 
-import timeline_scene.scene;
-import timeline_scene.channel;
+import :scene;
+import :channel;
 
 template<class TTimelineScene, typename... TARGS>
 std::shared_ptr<uts::TimelineScene> uts::TimelineScene::Create(TARGS... args)

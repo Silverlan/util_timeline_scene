@@ -8,11 +8,11 @@ module;
 #include <string>
 #include <memory>
 
-export module timeline_scene.channel;
-
-import timeline_scene.types;
+export module timeline_scene:channel;
 
 export namespace uts {
+	class TimelineScene;
+	class Event;
 	class Channel : public std::enable_shared_from_this<Channel> {
 	  public:
 		template<class TChannel, typename... TARGS>

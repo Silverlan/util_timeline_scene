@@ -10,9 +10,9 @@ module;
 
 module timeline_scene;
 
-import timeline_scene.scene;
-import timeline_scene.channel;
-import timeline_scene.event;
+import :scene;
+import :channel;
+import :event;
 
 template<class TChannel, typename... TARGS>
 std::shared_ptr<uts::Channel> uts::Channel::Create(TimelineScene &scene, const std::string &name, TARGS... args)

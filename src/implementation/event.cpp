@@ -8,8 +8,8 @@ module;
 
 module timeline_scene;
 
-import timeline_scene.channel;
-import timeline_scene.event;
+import :channel;
+import :event;
 
 uts::Event::Event(Channel &channel) : m_channel(channel.shared_from_this()) {}
 void uts::Event::SetTimeRange(float tStart, float tEnd)
