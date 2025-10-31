@@ -3,11 +3,10 @@
 
 module;
 
-#include <vector>
-#include <string>
-#include <memory>
 
 export module timeline_scene:channel;
+
+export import std;
 
 export namespace uts {
 	class TimelineScene;

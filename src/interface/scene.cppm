@@ -3,11 +3,10 @@
 
 module;
 
-#include <vector>
-#include <memory>
-#include <string>
 
 export module timeline_scene:scene;
+
+export import std.compat;
 
 export namespace uts {
 	class Channel;

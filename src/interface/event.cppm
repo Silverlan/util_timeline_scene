@@ -3,9 +3,10 @@
 
 module;
 
-#include <memory>
 
 export module timeline_scene:event;
+
+export import std.compat;
 
 export namespace uts {
 	class Channel;
