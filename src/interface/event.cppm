@@ -15,7 +15,7 @@ export namespace uts {
 		enum class State : uint32_t { Initial = 0u, Pending, Complete };
 		template<class TEvent, typename... TARGS>
 		static std::shared_ptr<Event> Create(Channel &channel, TARGS... args);
-		virtual ~Event() = default;
+		virtual ~Event();
 		virtual void Initialize() = 0;
 
 		void SetTimeRange(float tStart, float tEnd);

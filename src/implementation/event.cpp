@@ -10,6 +10,7 @@ import :channel;
 import :event;
 
 uts::Event::Event(Channel &channel) : m_channel(channel.shared_from_this()) {}
+uts::Event::~Event() {}
 void uts::Event::SetTimeRange(float tStart, float tEnd)
 {
 	m_startTime = tStart;
