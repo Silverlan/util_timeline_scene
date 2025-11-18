@@ -3,7 +3,6 @@
 
 module;
 
-
 export module timeline_scene:event;
 
 export import std.compat;

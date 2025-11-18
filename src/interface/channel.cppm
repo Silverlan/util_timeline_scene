@@ -3,7 +3,6 @@
 
 module;
 
-
 export module timeline_scene:channel;
 
 export import std;
